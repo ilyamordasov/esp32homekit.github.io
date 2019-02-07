@@ -1,13 +1,33 @@
+<!DOCTYPE html>
 <html>
 	<head>
+		<title>ESP32 Home KIT</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
 		<meta name="mobile-web-app-capable" content="yes">
     	<meta name="apple-mobile-web-app-capable" content="yes">
 	</head>
 	<body>
-		<input id="nameInput" placeholder="Device Name" type="text"></input>
-		<button id="connectBtn">Connect</button>
+		<div class="uk-container uk-margin uk-margin-top">
+			<input id="nameInput" placeholder="Device Name" type="text" class="uk-input"></input>
+			<button id="connectBtn" class="uk-button uk-button-primary uk-align-center">Connect</button>
+			<progress id="js-progressbar" class="uk-progress" value="0" max="100"></progress>
+			<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+				<h3 class="uk-card-title">Default</h3>
+				<p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
 		<script type="text/javascript">
 			"use strict";
+
+			function logProgress()
+			{
+				var bar = document.getElementById('js-progressbar');
+				bar.value += 20;
+			}
 
 			function handleError(error)
 			{
@@ -37,24 +57,30 @@
 					  filters: anyDeviceFilter(),
 					  optionalServices: ['generic_access']
 					})
-				}) 
+				})
+				.then(logProgress)
 				.then(device => {
 					nameInput.value = "";
 					return device.gatt.connect().catch(error => {
 					  throw "Unable to connect. Some devices refuse connections.";
 					});
 				})
+				.then(logProgress)
 				.then(server => server.getPrimaryService("generic_access"))
+				.then(logProgress)
 				.then(service => service.getCharacteristic("gap.device_name"))
+				.then(logProgress)
 				.then(characteristic => {
 					window.deviceName = characteristic;
 					return characteristic.readValue();
 				})
+				.then(logProgress)
 				.then(value => {
 					window.value = value;
 					alert(value);
 					nameInput.value = new TextDecoder("utf-8").decode(value);
 				})
+				.then(logProgress)
 				.catch(handleError)
 			});
 		</script>
