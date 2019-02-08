@@ -14,6 +14,8 @@
 		<div class="uk-container uk-margin uk-margin-top">
 			<input id="nameInput" placeholder="Device Name" type="text" class="uk-input uk-width-1-2 ux-align-center"></input>
 			<button id="connectBtn" class="uk-button uk-button-primary uk-align-center">Connect</button>
+			<button id="turnOnBtn" class="uk-button uk-button-primary uk-align-center">Turn On</button>
+			<button id="turnOffBtn" class="uk-button uk-button-primary uk-align-center">Turn Off</button>
 			<progress id="js-progressbar" class="uk-progress" value="0" max="100"></progress>
 			<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
 				<h3 class="uk-card-title">Default</h3>
@@ -22,6 +24,7 @@
 		</div>
 		<script type="text/javascript">
 			"use strict";
+			var index = 0;
 
 			function logProgress()
 			{
@@ -46,6 +49,57 @@
 				  .map(c => ({namePrefix: c}))
 				  .concat({name: ''});
 			}
+			
+			turnOnBtn.addEventListener('pointerup', function(event)
+			{
+				Promise.resolve()
+				.then(service => service.getCharacteristic('0x000e'))
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x55, index++, 0xFF, 0xDF, 0x24, 0x0E, 0xC6, 0x94, 0xD1, 0x97, 0x43, 0xAA]));
+				})
+				.then(service => service.getCharacteristic('0x000c'))
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x01, 0x00]));
+				})
+				.then(service => service.getCharacteristic('0x000e'))
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x55, index++, 0x01, 0xAA]));
+				})
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x55, index++, 0x00, 0x00, 0x00, 100, 0x00, 0xAA]));
+				})
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x55, index++, 0x03, 0xAA]));
+				})
+				.then(_ => {
+				  console.log('The kettle was turned on.');
+				})
+				.catch(handleError)
+			});
+			
+			turnOffBtn.addEventListener('pointerup', function(event)
+			{
+				Promise.resolve()
+				.then(service => service.getCharacteristic('0x000e'))
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x55, index++, 0xFF, 0xDF, 0x24, 0x0E, 0xC6, 0x94, 0xD1, 0x97, 0x43, 0xAA]));
+				})
+				.then(service => service.getCharacteristic('0x000c'))
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x01, 0x00]));
+				})
+				.then(service => service.getCharacteristic('0x000e'))
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x55, index++, 0x01, 0xAA]));
+				})
+				.then(characteristic => {
+				  return characteristic.writeValue(new Uint8Array([0x55, index++, 0x04, 0xAA]));
+				})
+				.then(_ => {
+				  console.log('The kettle was turned off.');
+				})
+				.catch(handleError)
+			});
 
 			connectBtn.addEventListener('pointerup', function(event)
 			{
