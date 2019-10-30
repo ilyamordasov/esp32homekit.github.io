@@ -2,6 +2,12 @@
 #include "SPI.h"
 #include "stm32f10x.h"
 
+#define SH
+
+#ifdef OS_USE_SEMIHOSTING
+  extern void initialise_monitor_handles(void);
+#endif
+
 uint8_t aRxBuffer [10];
 uint8_t ubRxIndex = 0;
 uint8_t ubTxIndex = 0;
@@ -54,7 +60,9 @@ void SPI1_IRQHandler(void) {
   /* SPI in Slave Receiver mode--------------------------------------- */
   if (SPI_I2S_GetITStatus(SPI1, SPI_I2S_IT_RXNE) == SET) {
     NRF_Read_Buf(0x00, aRxBuffer, 5);
-    printf("%02x\r\n", aRxBuffer);
+    #ifdef OS_USE_SEMIHOSTING
+      printf("%02x\r\n", aRxBuffer);
+    #endif
   }
 
   /* SPI Error interrupt--------------------------------------- */
@@ -65,6 +73,11 @@ void SPI1_IRQHandler(void) {
 }
 
 int main(void) {
+
+  #ifdef OS_USE_SEMIHOSTING
+    initialise_monitor_handles();
+  #endif
+
   /* SPI configuration ------------------------------------------------------*/
   SPI_Config();
 
