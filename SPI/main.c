@@ -43,8 +43,8 @@ uint8_t NRF_Read_Buf(uint8_t reg, uint8_t *pBuf, uint8_t uchars) {
 void SPI1_IRQHandler(void) {
   /* SPI in Slave Tramitter mode--------------------------------------- */
   if (SPI_I2S_GetITStatus(SPI1, SPI_I2S_IT_TXE) == SET) {
-    SPI_SendData8(SPI1, TxBuffer[Tx_Idx++]);
-    if (Tx_Idx == GetVar_NbrOfData())
+    SPI_RW(TxBuffer[ubTxIndex++]);
+    if (ubTxIndex == 5)
     {
       /* Disable the Tx buffer empty interrupt */
       SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_TXE, DISABLE);
