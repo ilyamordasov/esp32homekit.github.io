@@ -23,7 +23,8 @@
                     }
                     $.ajax(settings).done(function (response) {
                         for (var i in response.body.result[0].prediction) {
-                          $('#res').append(i.label+": "+i.ocr_text);
+                          var obj = response.body.result[0].prediction[i];
+                          $('#res').append(obj.label+": "+obj.ocr_text + "<br/>");
                         }
                     });
                     $('#blah').attr('src', e.target.result);
