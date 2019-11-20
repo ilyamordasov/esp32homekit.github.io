@@ -8,7 +8,7 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 $('#res').html('');
-                var file = $("#filer_input2")[0];
+                var file = new FormData($("#filer_input2")[0]);
                 reader.onload = function (e) {
                     var settings = {
                       async: true,
@@ -18,7 +18,7 @@
                       headers: {
                         "x-api-key": "mVZAS53hOC8YpDiAYjLZ33ug1QLrd4g8aA87SQi1",
                       },
-                      data: new FormData(file),
+                      data: file,
                       cache: false,
                       contentType: false,
                       processData: false,
