@@ -9,8 +9,19 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#blah')
-                        .attr('src', e.target.result);
+                    var settings = {
+                      "async": true,
+                      "crossDomain": true,
+                      "url": "https://i18d9tav98.execute-api.eu-north-1.amazonaws.com/default",
+                      "method": "POST",
+                      "headers": {
+                        "x-api-key": "mVZAS53hOC8YpDiAYjLZ33ug1QLrd4g8aA87SQi1",
+                      }
+                    }
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                    });
+                    $('#blah').attr('src', e.target.result);
                 };
 
                 reader.readAsDataURL(input.files[0]);
