@@ -22,8 +22,7 @@
 //                       processData: false
                     }
                     $.ajax(settings).done(function (response) {
-                        var obj = jQuery.parseJSON( response.body );
-                        for (var i in obj.result[0].prediction) {
+                        for (var i in response.body.result[0].prediction) {
                           $('#res').append(i.label+": "+i.ocr_text);
                         }
                     });
