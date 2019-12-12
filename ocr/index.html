@@ -19,8 +19,8 @@
                     xhr.addEventListener("readystatechange", function () {
                         if (this.readyState === this.DONE) {
                             console.log(this.responseText);
-                          for (var i in parseJSON(this.responseText).result[0].prediction) {
-                            var obj = parseJSON(this.responseText).result[0].prediction[i];
+                          for (var i in JSON.parse(this.responseText).result[0].prediction) {
+                            var obj = JSON.parse(this.responseText).result[0].prediction[i];
                             $('#res').append(obj.label+": "+obj.ocr_text + "<br/>");
                           }
                         }
