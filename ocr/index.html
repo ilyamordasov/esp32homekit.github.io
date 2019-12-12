@@ -10,23 +10,20 @@
                 $('#res').html('');
                 //var file = new FormData(input.files[0]);
                 reader.onload = function (e) {
-                    var settings = {
-                      async: true,
-                      crossDomain: true,
-                      url: "https://i18d9tav98.execute-api.eu-north-1.amazonaws.com/default",
-                      method: "POST",
-                      headers: {
-                        "x-api-key": "mVZAS53hOC8YpDiAYjLZ33ug1QLrd4g8aA87SQi1",
-                      },
-                      data: input.files[0],
-                      processData: false
-                    }
-                    $.ajax(settings).done(function (response) {
-                        for (var i in response.body.result[0].prediction) {
-                          var obj = response.body.result[0].prediction[i];
-                          $('#res').append(obj.label+": "+obj.ocr_text + "<br/>");
+                    //var data = 'urls=https://goo.gl/ICoiHc';
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === this.DONE) {
+                            console.log(this.responseText);
                         }
                     });
+
+                    xhr.open("POST", "https://app.nanonets.com/api/v2/OCR/Model/7c993461-7f31-4913-a36c-b7d9241191ac/LabelUrls/");
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.setRequestHeader("authorization", "Basic " + btoa("TeDlGHJ9HThdk8Syf8M5N2LiyB8e69UmWidemTxop3m:"));
+
+                    xhr.send(input.files[0]);
                     $('#blah').attr('src', e.target.result);
                 };
 
