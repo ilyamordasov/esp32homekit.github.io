@@ -12,6 +12,9 @@
                 reader.onload = function (e) {
                     //var data = 'urls=https://goo.gl/ICoiHc';
                     var xhr = new XMLHttpRequest();
+                  
+                    var data = new FormData();
+                    data.append('file', input.files[0]);
 
                     xhr.addEventListener("readystatechange", function () {
                         if (this.readyState === this.DONE) {
@@ -27,7 +30,7 @@
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.setRequestHeader("authorization", "Basic " + btoa("TeDlGHJ9HThdk8Syf8M5N2LiyB8e69UmWidemTxop3m:"));
 
-                    xhr.send(input.files[0]);
+                    xhr.send(data);
                     $('#blah').attr('src', e.target.result);
                 };
 
