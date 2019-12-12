@@ -19,8 +19,8 @@
                     xhr.addEventListener("readystatechange", function () {
                         if (this.readyState === this.DONE) {
                             console.log(this.responseText);
-                          for (var i in this.responseText.body.result[0].prediction) {
-                            var obj = this.responseText.body.result[0].prediction[i];
+                          for (var i in this.responseText.result[0].prediction) {
+                            var obj = this.responseText.result[0].prediction[i];
                             $('#res').append(obj.label+": "+obj.ocr_text + "<br/>");
                           }
                         }
