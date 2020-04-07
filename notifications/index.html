@@ -6,9 +6,7 @@
             list: [],
             id: 0,
             log: function(msg) {
-                var console = document.getElementById('console');
-                console.innerHTML += ("\n"+msg);
-                console.scrollTop = console.scrollHeight;
+                console.log("\n"+msg);
             },
             compatible: function() {
                 if (typeof Notification === 'undefined') {
@@ -37,7 +35,7 @@
                     notify.list[id] = new Notification("Notification #"+id, {
                         body: "This is the text body of the notification. \nPretty cool, huh?",
                         tag: id,
-                        icon: "images/Sexy_Ben.jpeg",
+                        icon: "https://www.factoringplus.ru/images/small-logo.svg",
                         lang: "",
                         dir: "auto",
                     });
