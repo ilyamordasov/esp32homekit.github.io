@@ -57,6 +57,32 @@
             }
         };
     };
+    
+    function ct() {
+     
+
+window.ctw.getRouteKeyData('my_form_1', function(success, data){
+    console.log(success, data);
+    if (success) {
+        if (data.widgetFound) {
+            if (data.widgetData.callCenterWorkingMode == 'working_hours') {
+                console.log('колл-центр работает, отображение виджета');
+            } else {
+                if (data.widgetData.collectNonWorkingRequests) {
+                    console.log('колл-центр не работает, но можем отобразить форму нерабочего времени');
+                } else {
+                    console.log('колл-центр не работает, заявки в нерабочее время не собираем');
+                }
+            }
+        } else {
+            console.log('не найден включенный виджет по routeKey, либо услуга обратного звонка не активна');
+        }
+    } else {
+        console.log('во время обработки прозошла ошибка');
+        console.log(data)
+    }
+ });   
+    }
 </script>
 <script charset="utf-8" src="//mod.calltouch.ru/4.aec89c692b4460816942.js"></script>
 </head>
