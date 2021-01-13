@@ -10,6 +10,23 @@
         $scope.auth = function(login, password) {
             
             //$scope.debug += login + "/" + password + "\r\n";
+            var settings_auth = {
+				"url": $scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
+				"method": "POST",
+				"timeout": 0,
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"data": JSON.stringify({"request":{"login":login,"password":password}}),
+			};
+
+			$.ajax(settings_auth).done(function (response) {
+                console.log(response);
+                $scope.debug += response.response.sessionID + "\r\n";
+                $scope.$apply();
+            });
+
+
             var settings = {
                 url: "https://httpbin.org/post", //$scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
                 method: "POST",
@@ -28,24 +45,9 @@
                 $scope.debug += error + "\r\n";
                   console.log('error', error);
               });
-            var settings_auth = {
-				"url": $scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
-				"method": "POST",
-				"timeout": 0,
-				"headers": {
-					"Content-Type": "application/json"
-				},
-				"data": JSON.stringify({"request":{"login":login,"password":password}}),
-			};
-
-			$.ajax(settings_auth).done(function (response) {
-                console.log(response);
-                $scope.debug += response.response.sessionID + "\r\n";
-                $scope.$apply();
-            });
         }
 
-        $scope.comissions_0 = "PREPARING4";
+        $scope.comissions_0 = "PREPARING5";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
