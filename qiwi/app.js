@@ -176,7 +176,7 @@
             $scope.getDataFromAPI($scope.formatDate(new Date()), $scope.formatDate(new Date(new Date().getFullYear()-1, new Date().getMonth(), new Date().getDate()))) // с сегодня предыдущего года по сегодня
                 .then(response => response)
                 .then(result => {
-                    scope.comissions_0.value = Math.round(result[0].comission);
+                    scope.comissions_0 = Math.round(result[0].comission);
                     $scope.comissions[0].value = Math.round(result[0].comission);
                     $scope.comissions[1].value = Math.round(result[1].comission);
                     $scope.comissions[2].value = Math.round(result[7].comission);
@@ -384,7 +384,7 @@
         $scope.last_month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'][new Date().getMonth()-1] + " " + new Date().getFullYear();
 
 
-        $scope.comissions_0.value = 0;
+        $scope.comissions_0 = 0;
 
         $scope.comissions = [
             {label: "Сегодня", value: ""},
