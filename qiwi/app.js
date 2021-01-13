@@ -29,13 +29,13 @@
             //       console.log('error', error);
             //   });
             var settings_auth = {
-				"url": "https://httpbin.org/post",
+				"url": $scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
 				"method": "POST",
 				"timeout": 0,
 				"headers": {
 					"Content-Type": "application/json"
 				},
-				"data": JSON.stringify({"request":{"login":"dashboard_gar","password":"JJjhs7eejw"}}),
+				data: {request:{login:login,password:password}},
 			};
 
 			$.ajax(settings_auth).done(function (response) {
@@ -45,7 +45,7 @@
             });
         }
 
-        $scope.comissions_0 = "PREPARING4";
+        $scope.comissions_0 = "PREPARING5";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
