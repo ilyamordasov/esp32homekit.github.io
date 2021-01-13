@@ -9,7 +9,7 @@
 
         $scope.auth = function(login, password) {
             
-            $scope.debug += login + "/" + password + "\r\n";
+            //$scope.debug += login + "/" + password + "\r\n";
             // var settings = {
             //     url: "https://httpbin.org/post", //$scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
             //     method: "POST",
@@ -45,7 +45,7 @@
             });
         }
 
-        $scope.comissions_0 = "PREPARING3";
+        $scope.comissions_0 = "PREPARING4";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
