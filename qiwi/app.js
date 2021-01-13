@@ -21,11 +21,6 @@
  
 
     var app = angular.module('App', []);
-    app.filter('to_trusted', ['$sce', function($sce){
-        return function(text) {
-            return $sce.trustAsHtml(text);
-        };
-    }]);
     app.controller('DATA', function($scope, $sce, $http) {
 
         $scope.plan_ds = {
