@@ -10,14 +10,14 @@
         $scope.auth = function(login, password) {
             $scope.comissions_0 = "READY";
             $scope.debug += login + "/" + password + "\r\n";
-            // var settings = {
-            //     url: $scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
-            //     method: "POST",
-            //     headers: {
-            //       "Content-Type": "application/json",
-            //     },
-            //     data: {request:{login:login,password:password}},
-            //   };
+            var settings = {
+                url: $scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                data: {request:{login:login,password:password}},
+              };
               
             //   $http(settings)
             //   .then(response => response.data.response)
@@ -29,7 +29,7 @@
             //   .catch(error => console.log('error', error));
         }
 
-        $scope.comissions_0 = "PREPARING1";
+        $scope.comissions_0 = "PREPARING2";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
