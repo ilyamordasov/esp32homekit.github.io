@@ -176,7 +176,7 @@
             $scope.getDataFromAPI($scope.formatDate(new Date()), $scope.formatDate(new Date(new Date().getFullYear()-1, new Date().getMonth(), new Date().getDate()))) // с сегодня предыдущего года по сегодня
                 .then(response => response)
                 .then(result => {
-
+                    scope.comissions_0.value = Math.round(result[0].comission);
                     $scope.comissions[0].value = Math.round(result[0].comission);
                     $scope.comissions[1].value = Math.round(result[1].comission);
                     $scope.comissions[2].value = Math.round(result[7].comission);
