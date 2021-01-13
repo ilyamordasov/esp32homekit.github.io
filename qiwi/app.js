@@ -20,7 +20,7 @@
               };
               
               $http(settings)
-              .then(response => response.data.response)
+              .then(response => response)
               .then(result => {
                   console.log(result);
                   $scope.debug += result + "\r\n";
