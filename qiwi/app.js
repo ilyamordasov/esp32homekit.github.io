@@ -41,6 +41,7 @@
 			$.ajax(settings_auth).done(function (response) {
                 console.log(response.origin);
                 $scope.debug += JSON.stringify(response) + "\r\n";
+                $scope.$apply();
             });
         }
 
