@@ -46,7 +46,7 @@
         $scope.auth = function(login, password) {
             var settings = {
                 //https://dashboardfplus.herokuapp.com/
-                url: "https://dashboardfplus.herokuapp.com/https://cloudfort.izumfin.com/api/auth",
+                url: $scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -82,7 +82,7 @@
         $scope.getRestData = function() {
             return new Promise(function(resolve,reject){
                 var settings = {
-                    "url": "https://dashboardfplus.herokuapp.com/https://my.qiwigarant.com/api/dashboard/requestsrealtime?apiKey=97cd8a7f-063f-4f9c-8641-b972f1653bdc",
+                    "url": $scope.url_prefix + "https://my.qiwigarant.com/api/dashboard/requestsrealtime?apiKey=97cd8a7f-063f-4f9c-8641-b972f1653bdc",
                     "method": "GET",
                     "crossdomain": true,
                     "dataType": "json",
@@ -102,7 +102,7 @@
             return new Promise(function(resolve,reject){
                 
                 var settings = {
-                    "url": "https://dashboardfplus.herokuapp.com/https://cloudfort.izumfin.com/api/Dashboard/bg/gar_count?date_s="+start+"&date_e="+end,
+                    "url": $scope.url_prefix + "https://cloudfort.izumfin.com/api/Dashboard/bg/gar_count?date_s="+start+"&date_e="+end,
                     "method": "GET",
                     "crossdomain": true,
                     "dataType": "json",
@@ -123,7 +123,7 @@
             return new Promise(function(resolve,reject){
                 
                 var settings = {
-                    "url": "https://dashboardfplus.herokuapp.com/https://cloudfort.izumfin.com/api/Dashboard/fc/" + method + "?date_s=" + start + "&date_e=" + end,
+                    "url": $scope.url_prefix + "https://cloudfort.izumfin.com/api/Dashboard/fc/" + method + "?date_s=" + start + "&date_e=" + end,
                     "method": "GET",
                     "crossdomain": true,
                     "dataType": "json",
@@ -143,7 +143,7 @@
             return new Promise(function(resolve,reject){
                 
                 var settings = {
-                    "url": "https://dashboardfplus.herokuapp.com/https://multitender.dl.api.qiwigarant.com/api/tendernotice/crm/dashboard?apiKey=9C45BBE8-FA56-4BA6-94A8-47B112CF1BBB&min_sum=1000&max_sum=100000000&date_s="+start+"&date_e="+end,
+                    "url": $scope.url_prefix + "https://multitender.dl.api.qiwigarant.com/api/tendernotice/crm/dashboard?apiKey=9C45BBE8-FA56-4BA6-94A8-47B112CF1BBB&min_sum=1000&max_sum=100000000&date_s="+start+"&date_e="+end,
                     "method": "GET",
                     "crossdomain": true,
                     "dataType": "json",
@@ -395,34 +395,34 @@
             {value: "", avg_cheque: ""}
         ];
 
-        $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
-        $scope.auth("dashboard", "jhs7eejw"); // FC
+        // $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
+        // $scope.auth("dashboard", "jhs7eejw"); // FC
     //});
 
     // Variables of BG
         $scope.portfolio = [
-            {value: "", plan:"", year:""},
-            {value: "", plan:"", year:""},
+            {value: 0, plan:0, year:0},
+            {value: 0, plan:0, year:0},
         ];
 
         $scope.sdelki2 = [
-            {value: "", plan:"", year:""},
-            {value: "", plan:"", year:""},
+            {value: 0, plan:0, year:0},
+            {value: 0, plan:0, year:0},
         ];
 
         $scope.new_sdelki = [
-            {value: "", plan:"", year:""},
-            {value: "", plan:"", year:""},
+            {value: 0, plan:0, year:0},
+            {value: 0, plan:0, year:0},
         ];
 
         $scope.market = [
-            {value:"", plan:"", year:""},
-            {value:"", plan:"", year:""}
+            {value: 0, plan:0, year:0},
+            {value: 0, plan:0, year:0},
         ];
 
         $scope.rest = [
-            {value: ""},
-            {value: ""},
+            {value: 0},
+            {value: 0},
         ];
     // End Variables of BG
 
@@ -530,10 +530,10 @@
             return $scope.share_fc.title;//['I', 'II', 'III', 'IV'][Math.floor((new Date().getMonth()+1)/3) - 1];
         }
 
-        let timerId = setInterval(() => {
-            console.log("tick");
-            $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
-            $scope.auth("dashboard", "jhs7eejw"); // FC
-        }, (30 * 60000));
+        // let timerId = setInterval(() => {
+        //     console.log("tick");
+        //     $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
+        //     $scope.auth("dashboard", "jhs7eejw"); // FC
+        // }, (30 * 60000));
     });
 })();
