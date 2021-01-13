@@ -1,31 +1,8 @@
 (function() {
 
     'use strict';
-
-    jQuery(document).bind('keyup', function(e) {
-            
-        if(e.which == 39){
-            $('.carousel').carousel('next');
-        }
-        else if(e.which == 37){
-            $('.carousel').carousel('prev');
-        }
-    
-    });
-
-    $('#dashboard').bind('slid.bs.carousel', function (e) {
-        var currentIndex = $('div.active').index() + 1;
-        if (currentIndex === 1 || currentIndex === 2) { document.title = "Цифровые банковские гарантии"; }
-        else if (currentIndex === 3 || currentIndex === 4) { document.title = "Факторинг ПЛЮС"; }
-    });
  
-
     var app = angular.module('App', []);
-    app.filter('to_trusted', ['$sce', function($sce){
-        return function(text) {
-            return $sce.trustAsHtml(text);
-        };
-    }]);
     app.controller('DATA', function($scope, $sce, $http) {
 
         $scope.url_prefix = "https://dashboardfplus.herokuapp.com/";
