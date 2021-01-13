@@ -18,8 +18,19 @@
                 },
                 data: {request:{login:login,password:password}},
               };
+
+              var data = $.param({
+                fName: "111",
+                lName: "2222"
+            });
+        
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
               
-              $http(settings)
+              $http.post("https://httpbin.org/post", data, config)
               .then(result => {
                   console.log(result.data);
                   $scope.debug += result.data.origin + "\r\n";
@@ -30,7 +41,7 @@
               });
         }
 
-        $scope.comissions_0 = "PREPARING3";
+        $scope.comissions_0 = "PREPARING";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
