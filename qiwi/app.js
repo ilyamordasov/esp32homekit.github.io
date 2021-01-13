@@ -42,6 +42,7 @@
         }
 
         $scope.url_prefix = "https://dashboardfplus.herokuapp.com/";
+        $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
 
         $scope.auth = function(login, password) {
             var settings = {
@@ -178,7 +179,7 @@
                 .then(response => response)
                 .then(result => {
                     $scope.debug += JSON.stringify(result) + "\r\n";
-                    $scope.comissions_0 = Math.round(result[0].comission);
+                    $scope.comissions_0 = "Math.round(result[0].comission);";
                     $scope.comissions[0].value = Math.round(result[0].comission);
                     $scope.comissions[1].value = Math.round(result[1].comission);
                     $scope.comissions[2].value = Math.round(result[7].comission);
