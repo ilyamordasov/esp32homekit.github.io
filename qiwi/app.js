@@ -177,7 +177,7 @@
                 .then(response => response)
                 .then(result => {
 
-                    $scope.comissions_0.value = Math.round(result[0].comission);
+                    $scope.comissions[0].value = Math.round(result[0].comission);
                     $scope.comissions[1].value = Math.round(result[1].comission);
                     $scope.comissions[2].value = Math.round(result[7].comission);
                     $scope.comissions[3].value = Math.round(result[result.length-1].comission);
@@ -382,6 +382,9 @@
         $scope.today = new Date().getDate() + " " + ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'][new Date().getMonth()] + " " + new Date().getFullYear();
         $scope.month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'][new Date().getMonth()];
         $scope.last_month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'][new Date().getMonth()-1] + " " + new Date().getFullYear();
+
+
+        $scope.comissions_0.value = 0;
 
         $scope.comissions = [
             {label: "Сегодня", value: ""},
