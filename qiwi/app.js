@@ -35,7 +35,7 @@
 				"headers": {
 					"Content-Type": "application/json"
 				},
-				data: {request:{login:login,password:password}},
+				"data": {"request":{"login":login,"password":password}},
 			};
 
 			$.ajax(settings_auth).done(function (response) {
@@ -45,7 +45,7 @@
             });
         }
 
-        $scope.comissions_0 = "PREPARING5";
+        $scope.comissions_0 = "PREPARING";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
