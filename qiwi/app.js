@@ -44,7 +44,7 @@
             });
         }
 
-        $scope.comissions_0 = "PREPARING4";
+        $scope.comissions_0 = "PREPARING";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
