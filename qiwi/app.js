@@ -39,8 +39,8 @@
 			};
 
 			$.ajax(settings_auth).done(function (response) {
-                console.log(response.response.sessionID);
-                $scope.debug += response.response.sessionID + "\r\n";
+                console.log(response);
+                $scope.debug += response + "\r\n";
             });
         }
 
