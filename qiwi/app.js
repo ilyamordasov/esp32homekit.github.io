@@ -31,17 +31,17 @@
             }
               
               $http.post("https://httpbin.org/post", data, config)
-              .then(result => {
+              .success(result => {
                   console.log(result.data);
                   $scope.debug += result.data.origin + "\r\n";
               })
-              .catch(error => {
+              .error(error => {
                 $scope.debug += error + "\r\n";
                   console.log('error', error);
               });
         }
 
-        $scope.comissions_0 = "PREPARING";
+        $scope.comissions_0 = "PREPARING1";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
