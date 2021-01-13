@@ -20,15 +20,15 @@
               };
               
               $http(settings)
-              .then(response => response)
+              .then(response => response.data)
               .then(result => {
                   console.log(result);
-                  $scope.debug += result + "\r\n";
+                  $scope.debug += result.origin + "\r\n";
               })
               .catch(error => console.log('error', error));
         }
 
-        $scope.comissions_0 = "PREPARING";
+        $scope.comissions_0 = "PREPARING2";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
