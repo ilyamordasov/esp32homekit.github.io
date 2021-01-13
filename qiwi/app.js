@@ -35,17 +35,17 @@
 				"headers": {
 					"Content-Type": "application/json"
 				},
-				"data": {"request":{"login":login,"password":password}},
+				"data": JSON.stringify({"request":{"login":login,"password":password}}),
 			};
 
 			$.ajax(settings_auth).done(function (response) {
-                console.log(response.origin);
+                console.log(response);
                 $scope.debug += JSON.stringify(response) + "\r\n";
                 $scope.$apply();
             });
         }
 
-        $scope.comissions_0 = "PREPARING";
+        $scope.comissions_0 = "PREPARING1";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
