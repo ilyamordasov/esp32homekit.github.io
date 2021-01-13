@@ -40,12 +40,12 @@
 
 			$.ajax(settings_auth).done(function (response) {
                 console.log(response);
-                $scope.debug += JSON.stringify(response) + "\r\n";
+                $scope.debug += response.response.sessionID + "\r\n";
                 $scope.$apply();
             });
         }
 
-        $scope.comissions_0 = "PREPARING1";
+        $scope.comissions_0 = "PREPARING2";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
