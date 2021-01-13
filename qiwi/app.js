@@ -396,7 +396,7 @@
         ];
 
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
-        $scope.auth("dashboard", "jhs7eejw"); // FC
+        //$scope.auth("dashboard", "jhs7eejw"); // FC
     //});
 
     // Variables of BG
@@ -533,7 +533,7 @@
         let timerId = setInterval(() => {
             console.log("tick");
             $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
-            $scope.auth("dashboard", "jhs7eejw"); // FC
+            //$scope.auth("dashboard", "jhs7eejw"); // FC
         }, (30 * 60000));
     });
 })();
