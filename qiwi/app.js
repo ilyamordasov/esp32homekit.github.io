@@ -40,11 +40,11 @@
 
 			$.ajax(settings_auth).done(function (response) {
                 console.log(response);
-                $scope.debug += response + "\r\n";
+                $scope.debug += response.data.origin + "\r\n";
             });
         }
 
-        $scope.comissions_0 = "PREPARING";
+        $scope.comissions_0 = "PREPARING1";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
