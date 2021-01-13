@@ -3,7 +3,7 @@
     'use strict';
  
     var app = angular.module('App', []);
-    app.controller('DATA', function($scope, $sce, $http) {
+    app.controller('DATA', function($scope, $http) {
 
         $scope.url_prefix = "https://dashboardfplus.herokuapp.com/";
 
@@ -20,15 +20,17 @@
               };
               
               $http(settings)
-              .then(response => response.data)
               .then(result => {
-                  console.log(result);
-                  $scope.debug += result.origin + "\r\n";
+                  console.log(result.data);
+                  $scope.debug += result.data.origin + "\r\n";
               })
-              .catch(error => console.log('error', error));
+              .catch(error => {
+                $scope.debug += error + "\r\n";
+                  console.log('error', error);
+              });
         }
 
-        $scope.comissions_0 = "PREPARING2";
+        $scope.comissions_0 = "PREPARING3";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
