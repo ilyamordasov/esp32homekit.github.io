@@ -8,7 +8,7 @@
         $scope.url_prefix = "https://dashboardfplus.herokuapp.com/";
 
         $scope.auth = function(login, password) {
-            $scope.comissions_0 = "READY";
+            
             $scope.debug += login + "/" + password + "\r\n";
             var settings = {
                 url: "https://httpbin.org/post", //$scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
