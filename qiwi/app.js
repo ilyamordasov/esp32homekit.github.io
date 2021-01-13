@@ -177,7 +177,7 @@
                 .then(response => response)
                 .then(result => {
 
-                    $scope.comissions[0].value = Math.round(result[0].comission);
+                    $scope.comissions_0.value = Math.round(result[0].comission);
                     $scope.comissions[1].value = Math.round(result[1].comission);
                     $scope.comissions[2].value = Math.round(result[7].comission);
                     $scope.comissions[3].value = Math.round(result[result.length-1].comission);
