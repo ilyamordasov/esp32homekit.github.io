@@ -1,0 +1,38 @@
+<html lang="ru" charset="utf-8">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			var settings_auth = {
+				"url": "https://dashboardfplus.herokuapp.com/https://cloudfort.izumfin.com/api/auth",
+				"method": "POST",
+				"timeout": 0,
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"data": JSON.stringify({"request":{"login":"dashboard_gar","password":"JJjhs7eejw"}}),
+			};
+
+			$.ajax(settings_auth).done(function (response) {
+				console.log(response.response.sessionID);
+				var settings = {
+					"url": "https://dashboardfplus.herokuapp.com/https://cloudfort.izumfin.com/api/Dashboard/bg/gar_count?date_s=20191130&date_e=20191204",
+					"method": "GET",
+					"timeout": 0,
+					"headers": {
+						"SessionID": response.response.sessionID //response.response.sessionID
+					},
+				};
+				//console.log(settings)
+
+				$.ajax(settings).done(function (response2) {
+					console.log(response2);
+					$('#test').text(JSON.stringify(response2));
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="test"></div>
+	</body>
+</html>
