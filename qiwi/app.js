@@ -8,7 +8,7 @@
         $scope.url_prefix = "https://dashboardfplus.herokuapp.com/";
 
         $scope.auth = function(login, password) {
-            $scope.comissions_0 = "READY";
+            //$scope.comissions_0 = "READY";
             $scope.debug += login + "/" + password + "\r\n";
             var settings = {
                 url: $scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
@@ -19,17 +19,15 @@
                 data: {request:{login:login,password:password}},
               };
               
-            //   $http(settings)
-            //   .then(response => response.data.response)
-            //   .then(result => {
-            //       $scope.debug += result.sessionID + "\r\n";
-            //       if (login === "dashboard_gar") { $scope.sessionID_BG = result.sessionID; $scope.updateData_BG(); }
-            //       else if (login === "dashboard") { $scope.sessionID_FC = result.sessionID; $scope.updateData_FC();}
-            //   })
-            //   .catch(error => console.log('error', error));
+              $http(settings)
+              .then(response => response.data.response)
+              .then(result => {
+                  $scope.debug += result.sessionID + "\r\n";
+              })
+              .catch(error => console.log('error', error));
         }
 
-        $scope.comissions_0 = "PREPARING2";
+        $scope.comissions_0 = "PREPARING3";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
