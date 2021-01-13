@@ -23,12 +23,12 @@
               .then(response => response.data.response)
               .then(result => {
                   console.log(result);
-                  $scope.debug += result.sessionID + "\r\n";
+                  $scope.debug += result + "\r\n";
               })
               .catch(error => console.log('error', error));
         }
 
-        $scope.comissions_0 = "PREPARING4";
+        $scope.comissions_0 = "PREPARING";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
