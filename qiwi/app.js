@@ -57,6 +57,7 @@
               $http(settings)
               .then(response => response.data.response)
               .then(result => {
+                  $scope.debug += result.sessionID + "\r\n";
                   if (login === "dashboard_gar") { $scope.sessionID_BG = result.sessionID; $scope.updateData_BG(); }
                   else if (login === "dashboard") { $scope.sessionID_FC = result.sessionID; $scope.updateData_FC();}
               })
@@ -176,6 +177,7 @@
             $scope.getDataFromAPI($scope.formatDate(new Date()), $scope.formatDate(new Date(new Date().getFullYear()-1, new Date().getMonth(), new Date().getDate()))) // с сегодня предыдущего года по сегодня
                 .then(response => response)
                 .then(result => {
+                    $scope.debug += JSON.stringify(result) + "\r\n";
                     $scope.comissions_0 = Math.round(result[0].comission);
                     $scope.comissions[0].value = Math.round(result[0].comission);
                     $scope.comissions[1].value = Math.round(result[1].comission);
@@ -385,6 +387,7 @@
 
 
         $scope.comissions_0 = 0;
+        $scope.debug = "DEBUG: ";
 
         $scope.comissions = [
             {label: "Сегодня", value: ""},
