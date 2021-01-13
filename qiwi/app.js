@@ -8,10 +8,10 @@
         $scope.url_prefix = "https://dashboardfplus.herokuapp.com/";
 
         $scope.auth = function(login, password) {
-            //$scope.comissions_0 = "READY";
+            $scope.comissions_0 = "READY";
             $scope.debug += login + "/" + password + "\r\n";
             var settings = {
-                url: $scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
+                url: "https://httpbin.org/post", //$scope.url_prefix + "https://cloudfort.izumfin.com/api/auth",
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -22,12 +22,13 @@
               $http(settings)
               .then(response => response.data.response)
               .then(result => {
+                  console.log(result);
                   $scope.debug += result.sessionID + "\r\n";
               })
               .catch(error => console.log('error', error));
         }
 
-        $scope.comissions_0 = "PREPARING3";
+        $scope.comissions_0 = "PREPARING4";
         $scope.debug = "";
         $scope.auth("dashboard_gar", "JJjhs7eejw"); // BG
         $scope.debug += "00000000000000000000000000000000000000000000000000000000000000000\r\n";
