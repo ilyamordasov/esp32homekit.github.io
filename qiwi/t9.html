@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <script>
+      var handle = (e) => {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code === 32) {
+          var ta = document.getElementById("ta");
+          let url = "https://speller.yandex.net/services/spellservice.json/checkText?text=" + ta.value.split(' ').join('+');
+          fetch(url).then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            for (a of data) { ta.value = ta.value.replace(a.word, a.s[0]); }
+          });
+        }
+      }
+    </script>
+    <textarea id="ta" rows="5" cols="50" spellcheck=true onkeypress="handle(event, this)"></textarea>
+  </body>
+</html>
