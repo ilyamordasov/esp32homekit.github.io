@@ -3,26 +3,40 @@
     <script src="//console.re/connector.js" data-channel="im-faceid" data-server="https://console.re" id="consolerescript"></script>
   </head>
   <body>
+    <input type="submit" id="MyButton">
     <script>
-      window.onload = async function(){
-        console.re.log("Test console");
-        const options = {
-            publicKey: {
-                rp: { name: "example.com" },
-                user: {
-                    name: "john.appleseed@example.com",
-                    id: Uint8Array.from("IlyaMordasov", c=>c.charCodeAt(0)),
-                    displayName: "John Appleseed"
-                },
-                pubKeyCredParams: [ { type: "public-key", alg: -7 } ],
-                challenge: Uint8Array.from("1234567890", c=>c.charCodeAt(0)),
-                authenticatorSelection: { authenticatorAttachment: "platform" }
-            }
-        };
-
-        const publicKeyCredential = await navigator.credentials.create(options);
-        console.re.log(publicKeyCredential);
-      }
+      async function webauthnCheck() {
+				if (await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()) {
+            console.re.log("PublicKeyCredential is available");
+						document.getElementById('MyButton').onclick = async function(event){
+								event.preventDefault();
+								const options = {
+										publicKey: {
+												rp: {
+														name: 'mydomain.tld'
+												},
+												user: {
+														id: Uint8Array.from("XXXXXX", c => c.charCodeAt(0)),
+														name: 'test',
+														displayName: 'Test User'
+												},
+												challenge: Uint8Array.from('XXXXXX', c => c.charCodeAt(0)),
+												pubKeyCredParams: [
+														{
+																type: 'public-key',
+																alg: -7
+														}
+												],
+												timeout: 15000
+										}
+								}
+								navigator.credentials.create(options).then(function (publicKeyCredential) {
+										console.re.log(publicKeyCredential);
+								})
+						}
+				}
+		}
+		webauthnCheck();
     </script>
   </body>
 </html>
