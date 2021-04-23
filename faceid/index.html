@@ -40,9 +40,9 @@
 							timeout: 15000
 						}
 					}
-					navigator.credentials.create(options).then(function (publicKeyCredential) {
-						console.re.log(publicKeyCredential);
-						document.getElementById('res').innerHTML = JSON.stringify(publicKeyCredential);
+					navigator.credentials.create(options).then(function (newCredential) {
+						console.re.log(newCredential);
+						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
 					});
 				}
 			}
