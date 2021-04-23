@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src="//console.re/connector.js" data-channel="im-faceid" data-server="https://console.re" id="consolerescript"></script>
+  </head>
+  <body>
+    <script>
+      window.onload = function(){
+        console.re.log("Test console");
+        const options = {
+            publicKey: {
+                rp: { name: "example.com" },
+                user: {
+                    name: "john.appleseed@example.com",
+                    id: Uint8Array.from("IlyaMordasov", c=>c.charCodeAt(0)),
+                    displayName: "John Appleseed"
+                },
+                pubKeyCredParams: [ { type: "public-key", alg: -7 } ],
+                challenge: Uint8Array.from("1234567890", c=>c.charCodeAt(0)),
+                authenticatorSelection: { authenticatorAttachment: "platform" }
+            }
+        };
+
+        const publicKeyCredential = await navigator.credentials.create(options);
+        console.re.log(publicKeyCredential);
+      }
+    </script>
+  </body>
+</html>
