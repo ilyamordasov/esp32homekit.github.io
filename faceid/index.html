@@ -32,8 +32,11 @@
 								}
 							],
 							authenticatorSelection: {
-								authenticatorAttachment: "platform"
+								authenticatorAttachment: "platform",
+								requireResidentKey: true,
+								userVerification: "required"
 							},
+							attestation: "none",
 							timeout: 15000
 						}
 					}
