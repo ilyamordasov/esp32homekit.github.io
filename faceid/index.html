@@ -3,9 +3,11 @@
     <script src="https://console.re/connector.js" data-channel="im-faceid" data-server="OPTIONAL-PRIVATE-SERVER-URL" id="consolerescript"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
 
   </head>
   <body>
+  	<input style="width: 100%; height:100px;" type="text" size="40" id="_name">
     <input style="width: 100%; height:100px;" type="submit" id="MyButton" title="SET">
     <input style="width: 100%; height:100px;" type="submit" id="MyButton2" title="GET">
     <div style="width: 100%;height: 100%;" id="res"></div>
@@ -13,17 +15,16 @@
     	async function webauthnCheck() {
 			if (await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()) {
             	console.re.log("PublicKeyCredential is available");
-            	console.log("test");
-				document.getElementById('MyButton').onclick = async function(event){
+				$('#MyButton').click(async function(event){
 					event.preventDefault();
 					const options = {
 						publicKey: {
 							rp: {
-								name: 'ilyamordasov.github.io'
+								name: document.domain
 							},
 							user: {
-								id: Uint8Array.from("123", c => c.charCodeAt(0)),
-								name: '123',
+								id: Uint8Array.from($('#_name').val() || "test", c => c.charCodeAt(0)),
+								name: $('#_name').val() || "test",
 								displayName: 'Test User'
 							},
 							challenge: Uint8Array.from(Math.random().toString(36).substring(7), c => c.charCodeAt(0)),
@@ -46,13 +47,13 @@
 					navigator.credentials.create(options).then(function (newCredentialInfo) {
 						var response = newCredentialInfo.response;
     					var clientExtensionsResults = newCredentialInfo.getClientExtensionResults();
-						document.getElementById('res').innerHTML = JSON.stringify(clientExtensionsResults);
+						$('#res').append(JSON.stringify(clientExtensionsResults));
 					})
 					.catch(function (err) {
                 		alert(err);
             		});
-				}
-				document.getElementById('MyButton2').onclick = async function(event){
+				});
+				$('#MyButton2').click(async function(event){
 					event.preventDefault();
 					const options = {
 						publicKey: {
@@ -63,12 +64,12 @@
 					navigator.credentials.get(options).then(function (newCredential) {
 						console.re.log(newCredential);
 						console.log(newCredential);
-						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
+						$('#res').append(JSON.stringify(newCredential));
 					})
 					.catch(function (err) {
                 		alert(err);
             		});
-				}
+				});
 			}
 		}
 		webauthnCheck();
