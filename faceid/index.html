@@ -47,7 +47,10 @@
 						console.re.log(newCredential);
 						console.log(newCredential);
 						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
-					});
+					})
+					.catch(function (err) {
+                		alert(err);
+            		});
 				}
 				document.getElementById('MyButton2').onclick = async function(event){
 					event.preventDefault();
@@ -57,7 +60,7 @@
         					allowCredentials: [{
         						id: Uint8Array.from("123", c => c.charCodeAt(0)),
         						type: 'public-key',
-        						transports: ['usb', 'ble', 'nfc'],
+        						transports: ['internal'],
     						}],
     						timeout: 15000
 						}
@@ -66,7 +69,10 @@
 						console.re.log(newCredential);
 						console.log(newCredential);
 						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
-					});
+					})
+					.catch(function (err) {
+                		alert(err);
+            		});
 				}
 			}
 		}
