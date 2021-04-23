@@ -43,10 +43,10 @@
 						}
 					}
 					console.log(options.publicKey);
-					navigator.credentials.create(options).then(function (newCredential) {
-						console.re.log(newCredential);
-						console.log(newCredential);
-						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
+					navigator.credentials.create(options).then(function (newCredentialInfo) {
+						var response = newCredentialInfo.response;
+    					var clientExtensionsResults = newCredentialInfo.getClientExtensionResults();
+						document.getElementById('res').innerHTML = JSON.stringify(clientExtensionsResults);
 					})
 					.catch(function (err) {
                 		alert(err);
@@ -57,11 +57,6 @@
 					const options = {
 						publicKey: {
 							challenge: Uint8Array.from(Math.random().toString(36).substring(7), c => c.charCodeAt(0)),
-        					allowCredentials: [{
-        						id: Uint8Array.from("123", c => c.charCodeAt(0)),
-        						type: 'public-key',
-        						transports: ['internal'],
-    						}],
     						timeout: 15000
 						}
 					};
