@@ -17,7 +17,7 @@
 					const options = {
 						publicKey: {
 							rp: {
-								name: 'mydomain.tld'
+								name: 'ilyamordasov.github.io'
 							},
 							user: {
 								id: Uint8Array.from("XXXXXX", c => c.charCodeAt(0)),
@@ -40,7 +40,7 @@
 							timeout: 15000
 						}
 					}
-					navigator.credentials.create(options).then(function (publicKeyCredential) {
+					navigator.credentials.create(options.publicKey).then(function (publicKeyCredential) {
 						console.re.log(publicKeyCredential);
 						document.getElementById('res').innerHTML = JSON.stringify(publicKeyCredential);
 					});
