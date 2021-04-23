@@ -6,7 +6,7 @@
     <input type="submit" id="MyButton">
     <script>
       async function webauthnCheck() {
-				if (await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()) {
+	if (await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()) {
             console.re.log("PublicKeyCredential is available");
 						document.getElementById('MyButton').onclick = async function(event){
 								event.preventDefault();
@@ -27,6 +27,7 @@
 																alg: -7
 														}
 												],
+												authenticatorSelection: { authenticatorAttachment: "platform" }
 												timeout: 15000
 										}
 								}
