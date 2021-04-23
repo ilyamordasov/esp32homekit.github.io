@@ -6,7 +6,8 @@
 
   </head>
   <body>
-    <input style="width: 100%; height:100px;" type="submit" id="MyButton">
+    <input style="width: 100%; height:100px;" type="submit" id="MyButton" title="SET">
+    <input style="width: 100%; height:100px;" type="submit" id="MyButton2" title="GET">
     <div style="width: 100%;height: 100%;" id="res"></div>
     <script>
     	async function webauthnCheck() {
@@ -43,6 +44,25 @@
 					}
 					console.log(options.publicKey);
 					navigator.credentials.create(options).then(function (newCredential) {
+						console.re.log(newCredential);
+						console.log(newCredential);
+						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
+					});
+				}
+				document.getElementById('MyButton2').onclick = async function(event){
+					event.preventDefault();
+					const options = {
+						publicKey: {
+							challenge: Uint8Array.from(Math.random().toString(36).substring(7), c => c.charCodeAt(0)),
+        					allowCredentials: [{
+        						id: Uint8Array.from("123", c => c.charCodeAt(0)),
+        						type: 'public-key',
+        						transports: ['usb', 'ble', 'nfc'],
+    						}],
+    						timeout: 15000
+						}
+					};
+					navigator.credentials.get(options).then(function (newCredential) {
 						console.re.log(newCredential);
 						console.log(newCredential);
 						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
