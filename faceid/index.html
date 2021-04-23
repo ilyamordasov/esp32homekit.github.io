@@ -10,7 +10,7 @@
     <div style="width: 100%;height: 100%;" id="res"></div>
     <script>
     	async function webauthnCheck() {
-			//if (await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()) {
+			if (await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()) {
             	console.re.log("PublicKeyCredential is available");
             	console.log("test");
 				document.getElementById('MyButton').onclick = async function(event){
@@ -48,7 +48,7 @@
 						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
 					});
 				}
-			//}
+			}
 		}
 		webauthnCheck();
     </script>
