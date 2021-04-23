@@ -39,7 +39,7 @@
 					}
 					navigator.credentials.create(options).then(function (publicKeyCredential) {
 						console.re.log(publicKeyCredential);
-						document.getElementById('res').innerHTML = publicKeyCredential;
+						document.getElementById('res').innerHTML = JSON.stringify(publicKeyCredential);
 					});
 				}
 			}
