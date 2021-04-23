@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src="//console.re/connector.js" data-channel="im-faceid" data-server="OPTIONAL-PRIVATE-SERVER-URL" id="consolerescript"></script>
+    <script src="https://console.re/connector.js" data-channel="im-faceid" data-server="OPTIONAL-PRIVATE-SERVER-URL" id="consolerescript"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
@@ -10,8 +10,9 @@
     <div style="width: 100%;height: 100%;" id="res"></div>
     <script>
     	async function webauthnCheck() {
-			if (await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()) {
+			//if (await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()) {
             	console.re.log("PublicKeyCredential is available");
+            	console.log("test");
 				document.getElementById('MyButton').onclick = async function(event){
 					event.preventDefault();
 					const options = {
@@ -40,14 +41,14 @@
 							timeout: 15000
 						}
 					}
-					console.log(optioms.publicKey);
+					console.log(options.publicKey);
 					navigator.credentials.create(options).then(function (newCredential) {
 						console.re.log(newCredential);
 						console.log(newCredential);
 						document.getElementById('res').innerHTML = JSON.stringify(newCredential);
 					});
 				}
-			}
+			//}
 		}
 		webauthnCheck();
     </script>
